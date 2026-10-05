@@ -1,0 +1,13 @@
+Install Redactor
+
+1. Move Redactor.app into your home Applications folder: ~/Applications
+2. The app is ad-hoc signed and not notarized.
+   On macOS 14 or earlier, right-click Redactor.app and choose Open the first time.
+   On macOS 15 or later, try to open it, then choose System Settings > Privacy & Security > Open Anyway.
+3. A shield icon in the menu bar means Redactor is running. Nothing needs to be closed, because there is no window.
+4. Redactor starts again at the next login. Turn off Open at Login in the menu bar before you move the app to the Trash.
+5. The pattern list is at:
+
+~/Library/Application Support/Redactor/patterns.json
+
+A clipboard-history app can keep a secret after Redactor removes it from the clipboard. Redactor removes that secret again only when the history app puts it back on the clipboard. Redactor does not delete history databases.

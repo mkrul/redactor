@@ -1,0 +1,308 @@
+{
+  "notes": [
+    "Factory pattern list for Redactor. The app copies this file to ~/Library/Application Support/Redactor/patterns.json and reads that copy.",
+    "Do not put real secrets in this file.",
+    "Passwords, keys, tokens, and secrets are matched, including a trailing app_key or token."
+  ],
+  "replacement": "[redacted]",
+  "minimumValueLength": 4,
+  "ignoreValues": [
+    "changeme",
+    "change_me",
+    "placeholder",
+    "your_api_key",
+    "your-api-key",
+    "your_token",
+    "your_password",
+    "xxx",
+    "xxxx",
+    "xxxxx",
+    "redacted",
+    "[redacted]",
+    "none",
+    "null",
+    "nil",
+    "true",
+    "false",
+    "undefined",
+    "todo",
+    "test",
+    "testing",
+    "example",
+    "sample",
+    "secret",
+    "password",
+    "token",
+    "apikey",
+    "api_key",
+    "insert_key_here",
+    "replace_me",
+    "enabled",
+    "disabled",
+    "yes",
+    "no",
+    "on",
+    "off",
+    "required",
+    "optional",
+    "localhost",
+    "bearer",
+    "basic"
+  ],
+  "parameterNames": [
+    "access_key",
+    "access_key_id",
+    "access_secret",
+    "access_token",
+    "account_key",
+    "account_secret",
+    "anthropic_api_key",
+    "api_key",
+    "api_secret",
+    "api_token",
+    "apikey",
+    "apisecret",
+    "apitoken",
+    "app_key",
+    "app_secret",
+    "application_secret",
+    "auth_key",
+    "auth_token",
+    "authorization",
+    "aws_access_key_id",
+    "aws_secret_access_key",
+    "aws_session_token",
+    "cf_api_token",
+    "cipher_key",
+    "client_key_data",
+    "client_secret",
+    "cloudflare_api_token",
+    "config_key",
+    "consumer_key",
+    "consumer_secret",
+    "credentials",
+    "database_password",
+    "datadog_api_key",
+    "db_pass",
+    "db_password",
+    "dd_api_key",
+    "digitalocean_token",
+    "do_token",
+    "encryption_key",
+    "external_id_key",
+    "feed_key",
+    "github_token",
+    "gitlab_token",
+    "google_api_key",
+    "groq_api_key",
+    "hf_token",
+    "huggingface_token",
+    "id_token",
+    "integrator_key",
+    "mailgun_api_key",
+    "mapbox_api_key",
+    "master_key",
+    "npm_token",
+    "oauth_token",
+    "openai_api_key",
+    "passwd",
+    "password",
+    "password_confirmation",
+    "password_hash",
+    "personal_access_token",
+    "private_key",
+    "private_token",
+    "pw",
+    "pwd",
+    "pypi_token",
+    "realogy_key",
+    "refresh_token",
+    "resend_api_key",
+    "secret",
+    "secret_access_key",
+    "secret_key",
+    "secret_key_base",
+    "secret_token",
+    "security_token",
+    "sendgrid_api_key",
+    "sentry_auth_token",
+    "service_account_key",
+    "session_token",
+    "shared_access_key",
+    "shared_key",
+    "signing_key",
+    "signing_secret",
+    "slack_token",
+    "slack_webhook",
+    "stripe_api_key",
+    "stripe_secret",
+    "stripe_secret_key",
+    "subscription_key",
+    "token",
+    "total_expert_test_credentials_v2",
+    "twilio_auth_token",
+    "vault_token",
+    "verani_listing_feed_key_0",
+    "verani_listing_feed_key_1",
+    "verani_listing_feed_key_2",
+    "webhook_secret",
+    "webhook_url"
+  ],
+  "tokenPatterns": [
+    {
+      "name": "private_key",
+      "regex": "-----BEGIN (?:[A-Z0-9]+ )?PRIVATE KEY-----[\\s\\S]*?-----END (?:[A-Z0-9]+ )?PRIVATE KEY-----",
+      "valueGroup": 0
+    },
+    {
+      "name": "pgp_private_key",
+      "regex": "-----BEGIN PGP PRIVATE KEY BLOCK-----[\\s\\S]*?-----END PGP PRIVATE KEY BLOCK-----",
+      "valueGroup": 0
+    },
+    {
+      "name": "age_secret_key",
+      "regex": "(?:^|[^A-Z0-9])(AGE-SECRET-KEY-1[A-Z0-9]{20,})(?![A-Z0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "jwt",
+      "regex": "(?:^|[^A-Za-z0-9_])(eyJ[A-Za-z0-9_-]{10,}\\.[A-Za-z0-9_-]{10,}\\.[A-Za-z0-9_-]{10,})(?![A-Za-z0-9_-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "url_password",
+      "regex": "(?i)\\b((?:postgres|postgresql|mysql|mongodb(?:\\+srv)?|redis|rediss|amqp|amqps|https?|ftp)://[^:\\s/@]+):([^@\\s/]{4,})@",
+      "valueGroup": 2
+    },
+    {
+      "name": "bearer_token",
+      "regex": "(?i)(?:^|[^A-Za-z])Bearer[ \\t]+([A-Za-z0-9\\-._~+/]{12,}={0,3})",
+      "valueGroup": 1
+    },
+    {
+      "name": "basic_credential",
+      "regex": "(?i)(?:^|[^A-Za-z])Basic[ \\t]+([A-Za-z0-9+/]{16,}={0,2})",
+      "valueGroup": 1
+    },
+    {
+      "name": "aws_access_key_id",
+      "regex": "(?:^|[^A-Z0-9])((?:A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA|ABIA|ACCA)[A-Z0-9]{16})(?![A-Z0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "github_personal_access_token",
+      "regex": "(?:^|[^A-Za-z0-9_])(gh[pousr]_[A-Za-z0-9]{36})(?![A-Za-z0-9_])",
+      "valueGroup": 1
+    },
+    {
+      "name": "github_fine_grained_pat",
+      "regex": "(?:^|[^A-Za-z0-9_])(github_pat_[A-Za-z0-9_]{20,})(?![A-Za-z0-9_])",
+      "valueGroup": 1
+    },
+    {
+      "name": "gitlab_token",
+      "regex": "(?:^|[^A-Za-z0-9])((?:glpat|glcbt|gldt|glrt|glptt)-[A-Za-z0-9\\-_]{20,})(?![A-Za-z0-9_\\-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "slack_token",
+      "regex": "(?:^|[^A-Za-z0-9])(xox[a-z]-[A-Za-z0-9-]{10,}|xapp-[0-9]-[A-Za-z0-9-]{10,})(?![A-Za-z0-9-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "slack_webhook",
+      "regex": "https://hooks\\.slack\\.com/services/T[A-Z0-9]+/B[A-Z0-9]+/[A-Za-z0-9]+",
+      "valueGroup": 0
+    },
+    {
+      "name": "stripe_secret_key",
+      "regex": "(?:^|[^A-Za-z0-9])((?:sk|rk)_(?:live|test)_[A-Za-z0-9]{10,})(?![A-Za-z0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "stripe_webhook_secret",
+      "regex": "(?:^|[^A-Za-z0-9])(whsec_[A-Za-z0-9]{10,})(?![A-Za-z0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "google_api_key",
+      "regex": "(?:^|[^A-Za-z0-9])(AIza[0-9A-Za-z\\-_]{35})(?![A-Za-z0-9_\\-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "google_oauth_token",
+      "regex": "(?:^|[^A-Za-z0-9])(ya29\\.[0-9A-Za-z\\-_]{20,})",
+      "valueGroup": 1
+    },
+    {
+      "name": "anthropic_secret_key",
+      "regex": "(?:^|[^A-Za-z0-9])(sk-ant-[A-Za-z0-9\\-_]{20,})(?![A-Za-z0-9_\\-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "openai_secret_key",
+      "regex": "(?:^|[^A-Za-z0-9])(sk-(?!ant-)(?:proj-)?[A-Za-z0-9\\-_]{20,})(?![A-Za-z0-9_\\-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "npm_token",
+      "regex": "(?:^|[^A-Za-z0-9])(npm_[A-Za-z0-9]{36})(?![A-Za-z0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "pypi_token",
+      "regex": "(?:^|[^A-Za-z0-9])(pypi-[A-Za-z0-9\\-_]{20,})(?![A-Za-z0-9_\\-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "sendgrid_api_key",
+      "regex": "(?:^|[^A-Za-z0-9])(SG\\.[A-Za-z0-9_\\-]{22}\\.[A-Za-z0-9_\\-]{43})(?![A-Za-z0-9_\\-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "shopify_token",
+      "regex": "(?:^|[^A-Za-z0-9])(shp(?:at|ss|ca|pa)_[a-fA-F0-9]{32})(?![a-fA-F0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "digitalocean_token",
+      "regex": "(?:^|[^A-Za-z0-9])((?:dop|doo)_v1_[a-f0-9]{64})(?![a-f0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "huggingface_token",
+      "regex": "(?:^|[^A-Za-z0-9])(hf_[A-Za-z0-9]{34,})(?![A-Za-z0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "groq_secret_key",
+      "regex": "(?:^|[^A-Za-z0-9])(gsk_[A-Za-z0-9]{20,})(?![A-Za-z0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "doppler_token",
+      "regex": "(?:^|[^A-Za-z0-9])(dp\\.st\\.[A-Za-z0-9]{20,})(?![A-Za-z0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "vault_token",
+      "regex": "(?:^|[^A-Za-z0-9])(hvs\\.[A-Za-z0-9_-]{20,})(?![A-Za-z0-9_-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "grafana_token",
+      "regex": "(?:^|[^A-Za-z0-9])(glsa_[A-Za-z0-9]{32}_[A-Za-z0-9]{8})(?![A-Za-z0-9])",
+      "valueGroup": 1
+    },
+    {
+      "name": "mapbox_secret_token",
+      "regex": "(?:^|[^A-Za-z0-9])(sk\\.eyJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+)(?![A-Za-z0-9_-])",
+      "valueGroup": 1
+    },
+    {
+      "name": "linear_api_key",
+      "regex": "(?:^|[^A-Za-z0-9])(lin_api_[A-Za-z0-9]{20,})(?![A-Za-z0-9])",
+      "valueGroup": 1
+    }
+  ]
+}
