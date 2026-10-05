@@ -4,7 +4,7 @@ import Darwin
 import Foundation
 import UserNotifications
 
-final class Agent: NSObject, NSApplicationDelegate, NSMenuDelegate {
+final class Agent: NSObject, NSApplicationDelegate, NSMenuDelegate, UNUserNotificationCenterDelegate {
     private enum WatchMode: String {
         case watching
         case paused
@@ -71,6 +71,18 @@ final class Agent: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let app = NSApplication.shared
         app.setActivationPolicy(.accessory)
         app.delegate = self
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.setNotificationCategories([
+            UNNotificationCategory(
+                identifier: "redactor.removal",
+                actions: [],
+                intentIdentifiers: [],
+                hiddenPreviewsBodyPlaceholder: "Redactor removed a secret.",
+                categorySummaryFormat: "%u: %@",
+                options: []
+            )
+        ])
         buildMenu()
         clipboard = ClipboardWatch(agent: self)
         clipboard?.start()
@@ -391,12 +403,21 @@ final class Agent: NSObject, NSApplicationDelegate, NSMenuDelegate {
         return true
     }
 
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification
+    ) async -> UNNotificationPresentationOptions {
+        [.banner, .list]
+    }
+
     private func notify(_ body: String) {
         guard Bundle.main.bundleIdentifier == "com.redactor.app" else { return }
         let content = UNMutableNotificationContent()
         content.title = "Redactor"
         content.body = body
         content.sound = nil
+        content.categoryIdentifier = "redactor.removal"
+        content.summaryArgument = body
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request) { _ in }
     }
