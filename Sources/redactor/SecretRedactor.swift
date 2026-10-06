@@ -183,7 +183,7 @@ struct SecretRedactor {
         if let matched, !valueRange.isEmpty, !assignmentIgnored(String(text[valueRange])) {
             return RawAssignment(name: matched, value: valueRange, resume: resume)
         }
-        let advanced = resume > keyStart ? resume : text.index(after: keyStart)
+        let advanced = trimmed > keyStart ? trimmed : text.index(after: keyStart)
         return RawAssignment(name: nil, value: nil, resume: advanced)
     }
 

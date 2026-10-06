@@ -192,6 +192,11 @@
       "valueGroup": 1
     },
     {
+      "name": "facebook_access_token",
+      "regex": "(?:^|[^A-Za-z0-9])(EAA[A-Za-z0-9]{80,})(?![A-Za-z0-9])",
+      "valueGroup": 1
+    },
+    {
       "name": "aws_access_key_id",
       "regex": "(?:^|[^A-Z0-9])((?:A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA|ABIA|ACCA)[A-Z0-9]{16})(?![A-Z0-9])",
       "valueGroup": 1
