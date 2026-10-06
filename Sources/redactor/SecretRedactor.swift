@@ -167,10 +167,16 @@ struct SecretRedactor {
         if separator == ":" && !quotedKey && !colonPrefixAllowed(text, lineStart: lineStart, keyStart: keyStart) {
             return nil
         }
-        let afterSeparator = text.index(after: separatorIndex)
-        let trimmed = skipHorizontalSpace(text, afterSeparator, lineEnd)
-        if trimmed != afterSeparator && looksLikeKeyEquals(text, trimmed, lineEnd) {
-            return RawAssignment(name: nil, value: nil, resume: afterSeparator)
+        var valueOrigin = text.index(after: separatorIndex)
+        if separator == "=" {
+            let rocket = skipHorizontalSpace(text, valueOrigin, lineEnd)
+            if rocket < lineEnd && text[rocket] == ">" {
+                valueOrigin = text.index(after: rocket)
+            }
+        }
+        let trimmed = skipHorizontalSpace(text, valueOrigin, lineEnd)
+        if trimmed != valueOrigin && looksLikeKeyEquals(text, trimmed, lineEnd) {
+            return RawAssignment(name: nil, value: nil, resume: valueOrigin)
         }
         let (valueRange, resume) = readValue(text, trimmed, lineEnd)
         let matched = KeyNormalization.matchName(key, names: list.parameterNames, normalized: list.normalizedNames)

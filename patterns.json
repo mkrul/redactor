@@ -72,6 +72,8 @@
     "aws_access_key_id",
     "aws_secret_access_key",
     "aws_session_token",
+    "bugsnag_auth_token",
+    "bugsnag_project_api_key",
     "cf_api_token",
     "cipher_key",
     "client_key_data",
@@ -182,6 +184,11 @@
     {
       "name": "basic_credential",
       "regex": "(?i)(?:^|[^A-Za-z])Basic[ \\t]+([A-Za-z0-9+/]{16,}={0,2})",
+      "valueGroup": 1
+    },
+    {
+      "name": "cursor_api_key",
+      "regex": "(?:^|[^A-Za-z0-9])(crsr_[0-9a-f]{64})(?![0-9a-f])",
       "valueGroup": 1
     },
     {
