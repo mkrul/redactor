@@ -219,7 +219,7 @@ struct SecretRedactor {
             }
             cursor = text.index(after: cursor)
         }
-        return (inner..<lineEnd, lineEnd)
+        return (open..<open, open)
     }
 
     private func readPlainValue(
